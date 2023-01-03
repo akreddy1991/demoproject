@@ -1,0 +1,259 @@
+ https://www.youtube.com/channel/UCDZ4qdpygcBCAEvP8DniwtA/playlists
+
+https://www.youtube.com/channel/UCQNannZRuKW5pdCLE0-CmNA/featured
+
+https://www.youtube.com/channel/UCvpwST0Xcm7pOKkA65vS7ig/playlists-ADB
+
+https://www.youtube.com/channel/UC0bGtXHwBJJUW30AvpQ5MXg/videos--ADF QUESTIONS
+
+
+
+
+
+Eg:On premises 
+
+Buying  a own car suppose if you dont know how to drive the car waste of buying the car.
+
+cloud/web/online
+
+hire the using online app like ola,uber etc
+
+if u want software you need to have Hardware,software server and apps
+
+so in cloud we have azure,aws,gcp 
+
+if u have the gold u wil store in the bank locker to secure it and in real time scenario we have to maintain data and store in the server then we go for cloud(aws,azure,gcp).
+
+Azure cloud platform have diff types of resources we can store the data or migrate the data .
+Azure portal is like web application user friendly and we can access our resources from our local system as well
+
+Pay as you go
+User friendly--every one can understand it is like drag and drop
+we have portal and we can acces using userid and password.from everywhere he/she can access the portal 
+on premise-local laptop
+cloud-azure 
+resources we have to maintain in single resource group--resource group is where project is related
+data -structured(eg:tables ,table columns) semi structured(excel files) ,unstructured(like images present in fb)
+azure data factory is one of the resource azure portal.
+
+
+
+
+
+
+what is cloud computing?
+
+Delivery of services over internet
+
+services like storage ,databases,virtual machine's and others.
+
+
+
+
+We access through browser
+
+what is a service provider?
+
+one who provides cloud services.
+
+amazon:aws
+google:gcp
+microsoft:azure
+
+Azure data factory is a hybrid data integration service that enables you to quickly and efficiently create automated data pipelines.
+It is a cloud base integration tool.
+ETL process  is the mostpopular method of collecting data from multiple resources  and loading it into centralized data ware house.
+
+Integartion run time:
+In simple term we can say that moving data from one place to other.
+
+3 types of runtime:azure integration runtime and self hosted integration runtime
+
+pipeline: A logical grouping of activities that performs a unit of work
+
+data factory can have one or more pipelines
+
+In Azure datafactory contain pipeline,Dataset,Dataflows,Power Query.
+
+Activities represent a processing step in a pipeline.For example you might use a copy activity to copy data from one data source to another data store.
+
+Linked services are much like connection strings which define the connection information that needed  for data factory to connect to external sources.
+Data set represent data structures with in data stores.
+
+create a storage account ,in that storage account we have containers tab click on it and create a container for that storage account
+goto container and create a input folder.
+
+Types of data activities:
+
+1.data movement activities.
+2.Data transformation activities--it wil help u change the data in different way
+3.control flow activities
+
+Triggers:
+
+you can execute the pipeline.
+
+triggers determines when a pipeline execution needs to be kicked off.
+
+pipelines and triggers have many to many relationship
+
+types of triggers:
+
+1.schedule trigger:A Trigger that invokes a pipeline on  wall clock schedule.
+
+
+
+2.tumbling window trigger: operates on periodic intervals:it will run hourly or minutes
+
+Eg:5.14AM -6:14 AM-First window trigger
+trigger().outputs.window starttime
+trigger().outputs.window endtime
+
+
+you can perform activity with previous /historical dates 
+
+you can delay the pipeline run time
+
+tumbling window trigger dependency in adf
+
+you have two piplelines Hourly logs pipeline--process logs for every hour and load adata into sql.
+hourly dataprocess pipeline:take logs hourly data 
+
+add dependencies:if previous trigger is successful then only second pipeline need to trigger
+
+self dependency trigger:
+
+it is going to dependent on its own.
+
+event based triggers 
+
+whenever any data deletion or addition in a particular staorage account.
+
+data factory is now integrated with azure event grid when trigger pipelines on event
+
+azure event grids allows you to respond to event happening at diff types of azure services and non services.
+@triggerbody().folderpath
+@triggerbody().filename
+
+Integration runtime in azure data factory
+
+Integration runtime is the compute infrastructure used by the adf to provide following data integration capabilities across diff networks
+
+1.data flow
+2.data movement
+3.activity dispatch
+
+Linked service-Target resource data store
+
+activities-which task u need to perform
+
+Integration runtime is bridge between linked service and activities.
+
+three types of IR are present they are 
+
+1.Azure 
+2.Self hosted --it will run on azure virtual network/private network if the resource belongs to private newtork.If the source is on cloud and destination is on on premise then go with Self hosted IR.
+3.Azure-ssis
+
+How to create a Azure Integration runtime?
+
+By using azure integration runtime u can perform data movement activities,data transformation (usql,notebook in adb )
+
+self hosted IR:
+
+performing data movement activities between cloud data stores and in private network.
+Running transform activities against compute resources in onpremises or azure virtual network.
+
+If resource belongs to azure virtual network ,if you want perform data movement or data tarnsformation activities then go with self hosted.
+
+IR:used by ADF  to perform it activities (Datamovement/Data transformations)
+
+Self hosted ir used in public and private network.
+
+when you have storage in cloud and storage in on premises,then you need to host self hosted IR.
+
+
+shared self hosted Integration runtime:
+
+For every ADF you need to have a IR and you can share the IR for the remaining ADF
+
+3.event base trigger: a trigger responds to an event.
+
+
+Parameterised Linked services ADF
+
+if u have sql server and having 10 databases and to create 10 linked services wil cause duplicate so avoid it we use parameterised linked services
+
+create parameters and pass those parameters .create 1 linked service and pass it
+
+parameterised data sets
+
+create data set which actually points to db
+
+
+system variables in adf
+
+there are three types of variables available they are pipeline scope,schedule trigger scope(@trigger().scheduledtime ,@trigger().starttime) tumbling window scope.
+
+In pipeline scope you have different variable name as @pipeline().datafactory,@pipeline().runid,@pipeline().pipeline,@pipeline().triggertype,@pipeline().triggerid,triggername etc
+
+pipeline run id is nohing but when u run the pipeline at the trigger as manual u wil find the run id at the executiion
+
+triggertype is what type of trigger u executed.
+
+pipeline scope wil u find while execution of stored procedure 
+
+
+
+copy activity-one storage to another
+
+
+lookup-you can connect storage and search for object
+
+getmeta data-blob storage
+
+delete activity-if u want to delete 
+
+connectors support in adf:
+
+1.avro format
+2.binary format--text files
+3.delimited text format-- csv files(comma separate values)
+4.json format--json files
+5.orc format
+6.parquet format
+
+parquet :its column based storage format
+
+avro:its a row based storage format for hadoop
+
+
+copy data activity:copy data activity is core activity in adf.you can copy data from more that 90 connectors one to another
+
+
+delete activity:you can use delete activity in adf to delete files or folders from on -premises storage accounts or cloud storage accounts.
+deleted files can be restored
+
+(delete files from a container using delete activity)-In general tab you have delete activity
+
+(recursively option is checked then all sub folders wil be deleted)
+
+
+parameters-->triggers
+
+varaiables are internal to the pipeline
+
+variables support 3 data types
+string,bool,array
+
+
+
+
+
+
+
+
+
+
+
+
